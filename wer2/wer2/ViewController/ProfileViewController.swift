@@ -22,15 +22,28 @@ class ProfileViewController: UIViewController {
     var signup :Bool = true{
         willSet{
             if newValue{
-                let nu = nowUs[0]
-                NameLabel.text = "Имя пользователя:"
-                Name.isHidden = false
-                Name.text = nu.name
-                EmailLabel.isHidden = false
-                Email.text = nu.email
-                Button.setTitle("Выйти из аккаунта", for: .normal)
-                //Button.titleLabel?.textColor = UIColor.red
-                Button.setTitleColor(UIColor.red, for: .normal)
+                let NumNowUs = nowUs
+                if NumNowUs.count != 0 {
+                    let nu = nowUs[NumNowUs.startIndex]
+                    NameLabel.text = "Имя пользователя:"
+                    Name.isHidden = false
+                    Name.text = nu.name
+                    EmailLabel.isHidden = false
+                    Email.text = nu.email
+                    Button.setTitle("Выйти из аккаунта", for: .normal)
+                    //Button.titleLabel?.textColor = UIColor.red
+                    Button.setTitleColor(UIColor.red, for: .normal)
+                } else {
+                    //let nu = nowUs[NumNowUs.endIndex]
+                    NameLabel.text = "Имя пользователя:"
+                    Name.isHidden = false
+                    Name.text = "Not work"
+                    EmailLabel.isHidden = false
+                    Email.text = "Lox"
+                    Button.setTitle("Выйти из аккаунта", for: .normal)
+                    //Button.titleLabel?.textColor = UIColor.red
+                    Button.setTitleColor(UIColor.red, for: .normal)
+                }
             } else {
                 NameLabel.text = "Вы еще не вошли"
                 Name.isHidden = true
@@ -67,7 +80,10 @@ class ProfileViewController: UIViewController {
         } else {
             do{
                 try Auth.auth().signOut()
+                var NumNowUs = nowUs
                 signup = !signup
+                NumNowUs.removeAll()
+                print(NumNowUs)
             } catch{
                 print(error)
             }

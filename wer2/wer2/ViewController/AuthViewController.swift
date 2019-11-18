@@ -51,18 +51,27 @@ class AuthViewController: UIViewController {
     }
     func saveTask() {
         let name = Name.text!
-        let Pass = pass.text!
+        //let Pass = pass.text!
         let Email = email.text!
         guard let managedContext = appDelegate2?.persistentContainer.viewContext else { return }
         let us = NowUs(context: managedContext)
-        us.name = name
-        us.email = Email
-        us.pass = Pass
-        us.master = false
+        if (singup) {
+            us.name = name
+            us.email = Email
+
+            us.master = false
+        } else {
+            us.name = name
+            us.email = Email
+            
+            us.master = false
+        }
         print(nowUs)
         do {
             try managedContext.save()
+            print("это хуйня роботает")
         } catch {
+            print("Лох пидр")
         }
     }
 }

@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>612672135446-plkrvk7u6h1qb2k26cdagalvaas3t8vo.apps.googleusercontent.com</string>
+	<string>206067724385-55440hfrq49uoi3gr1egvh27sq4dp9d1.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.612672135446-plkrvk7u6h1qb2k26cdagalvaas3t8vo</string>
+	<string>com.googleusercontent.apps.206067724385-55440hfrq49uoi3gr1egvh27sq4dp9d1</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDVzfz2IoWaMdaCpFTRuBV_YJ-BYvteikE</string>
+	<string>AIzaSyDqtuExhEDrLnr83nl8YG41emm58Fl2rCg</string>
 	<key>GCM_SENDER_ID</key>
-	<string>612672135446</string>
+	<string>206067724385</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>asteri.wer2</string>
+	<string>com.asteri.wer2</string>
 	<key>PROJECT_ID</key>
-	<string>schoolhelper-b0748</string>
+	<string>schoolhelper-bb396</string>
 	<key>STORAGE_BUCKET</key>
-	<string>schoolhelper-b0748.appspot.com</string>
+	<string>schoolhelper-bb396.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:612672135446:ios:f91062be42fec166367037</string>
+	<string>1:206067724385:ios:8e77a8c38feffc4dd4fa20</string>
 	<key>DATABASE_URL</key>
-	<string>https://schoolhelper-b0748.firebaseio.com</string>
+	<string>https://schoolhelper-bb396.firebaseio.com</string>
 </dict>
 </plist>

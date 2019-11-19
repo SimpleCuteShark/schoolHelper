@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		042CD27F02645AAD1E601CE2 /* Pods_wer2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED158F3CB6F002E0879D56DD /* Pods_wer2.framework */; };
+		FA0CC62D2383E7B90069ABE3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA0CC62C2383E7B90069ABE3 /* GoogleService-Info.plist */; };
 		FA4D7C2C2360E29D0067BD13 /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4D7C2B2360E29D0067BD13 /* TimeTableViewController.swift */; };
-		FA58162523796B4D0033619A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA58162423796B4D0033619A /* GoogleService-Info.plist */; };
 		FA58162723797F140033619A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA58162623797F140033619A /* ProfileViewController.swift */; };
 		FA5816292379880C0033619A /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5816282379880C0033619A /* AuthViewController.swift */; };
 		FA99ED83234DCFC40023A780 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA99ED82234DCFC40023A780 /* AppDelegate.swift */; };
@@ -28,8 +28,8 @@
 		91239A6A64B7ECF5D75AA31E /* Pods-wer2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wer2.debug.xcconfig"; path = "Target Support Files/Pods-wer2/Pods-wer2.debug.xcconfig"; sourceTree = "<group>"; };
 		CB77E0AFE9897B6C2A774F84 /* Pods-wer2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wer2.release.xcconfig"; path = "Target Support Files/Pods-wer2/Pods-wer2.release.xcconfig"; sourceTree = "<group>"; };
 		ED158F3CB6F002E0879D56DD /* Pods_wer2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wer2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA0CC62C2383E7B90069ABE3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA4D7C2B2360E29D0067BD13 /* TimeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableViewController.swift; sourceTree = "<group>"; };
-		FA58162423796B4D0033619A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA58162623797F140033619A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		FA5816282379880C0033619A /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		FA99ED7F234DCFC40023A780 /* wer2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wer2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,7 +126,7 @@
 				FA99ED90234DCFC50023A780 /* LaunchScreen.storyboard */,
 				FA99ED93234DCFC50023A780 /* Info.plist */,
 				FA99ED8B234DCFC40023A780 /* wer2.xcdatamodeld */,
-				FA58162423796B4D0033619A /* GoogleService-Info.plist */,
+				FA0CC62C2383E7B90069ABE3 /* GoogleService-Info.plist */,
 			);
 			path = wer2;
 			sourceTree = "<group>";
@@ -200,7 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA99ED92234DCFC50023A780 /* LaunchScreen.storyboard in Resources */,
-				FA58162523796B4D0033619A /* GoogleService-Info.plist in Resources */,
+				FA0CC62D2383E7B90069ABE3 /* GoogleService-Info.plist in Resources */,
 				FA99ED8F234DCFC50023A780 /* Assets.xcassets in Resources */,
 				FA99ED8A234DCFC40023A780 /* Main.storyboard in Resources */,
 			);

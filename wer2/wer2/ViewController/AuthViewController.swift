@@ -69,9 +69,9 @@ class AuthViewController: UIViewController {
         print(nowUs)
         do {
             try managedContext.save()
-            print("это хуйня роботает")
+            print("роботает")
         } catch {
-            print("Лох пидр")
+            print("сломалося")
         }
     }
 }
@@ -88,8 +88,19 @@ extension AuthViewController: UITextFieldDelegate{
                     if error == nil {
                         if let result = result {
                             print(result.user.uid)
-                            let ref = Database.database().reference().child("users")
-                            ref.child(result.user.uid).updateChildValues(["name" : name, "pass" : Pass, "email" : Email, "master" : false])
+                            let db = Firestore.firestore()
+                            db.collection("Users").document(Email).setData([
+                                "Name": name,
+                                "Pass": Pass,
+                                "Email": Email,
+                                "Master": false
+                            ]) { err in
+                                if let err = err {
+                                    print("Error writing document: \(err)")
+                                } else {
+                                    print("Document successfully written!")
+                                }
+                            }
                             self.saveTask();
                             self.dismiss(animated: true, completion: nil)
                         }

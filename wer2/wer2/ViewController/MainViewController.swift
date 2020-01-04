@@ -45,7 +45,7 @@ class MainViewController: UIViewController {
         
         if master == true {
             newPostButton.isEnabled = true
-            newPostButton.tintColor = UIColor.white
+            newPostButton.tintColor = UIColor.systemBlue
         } else {
             newPostButton.isEnabled = false
             newPostButton.tintColor = UIColor.clear

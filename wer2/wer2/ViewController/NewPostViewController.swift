@@ -52,9 +52,6 @@ class NewPostViewController: UIViewController {
             //print("Failed to save data: ", error.localizedDescription)
             completion(false)
         }
-        
-        
-        
     }
 
 }

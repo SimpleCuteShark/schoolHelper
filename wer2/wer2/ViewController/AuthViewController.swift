@@ -49,6 +49,7 @@ class AuthViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
+    /*
     func saveTask() {
         let name = Name.text!
         //let Pass = pass.text!
@@ -74,7 +75,9 @@ class AuthViewController: UIViewController {
             print("сломалося")
         }
     }
+ */
 }
+// MARK: - Auth
 
 extension AuthViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -101,7 +104,7 @@ extension AuthViewController: UITextFieldDelegate{
                                     print("Document successfully written!")
                                 }
                             }
-                            self.saveTask();
+                            //self.saveTask();
                             self.dismiss(animated: true, completion: nil)
                         }
                     }
@@ -113,7 +116,7 @@ extension AuthViewController: UITextFieldDelegate{
             if (!Pass.isEmpty && !Email.isEmpty) {
                 Auth.auth().signIn(withEmail: Email, password: Pass) { (result, error) in
                     if error == nil {
-                        self.saveTask();
+                        //self.saveTask();
                         self.dismiss(animated: true, completion: nil)
                     }
                 }

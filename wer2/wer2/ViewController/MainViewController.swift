@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 let appDelegate = UIApplication.shared.delegate as? AppDelegate
 class MainViewController: UIViewController {
@@ -15,7 +16,9 @@ class MainViewController: UIViewController {
     // MARK: - Init
     
     @IBOutlet weak var tv: UITableView!
+    @IBOutlet weak var newPostButton: UIBarButtonItem!
     
+    var master = false;
     var taskArray = [Post]()
     let cellid = "cellid"
     
@@ -23,11 +26,30 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
 
         callDelegates()
+        
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         fetchyData()
         tv.reloadData()
+        
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let email = user.email!
+        
+        db.collection("Users").document(email).getDocument { (document, error) in
+        if let document = document, document.exists {
+            self.master = document.get("Master") as? Bool ?? false
+        } else {
+            
+        } } }
+        
+        if master == true {
+            newPostButton.isEnabled = true
+            newPostButton.tintColor = UIColor.white
+        } else {
+            newPostButton.isEnabled = false
+            newPostButton.tintColor = UIColor.clear
+        }
     }
     
     @IBAction func NewPostButton(_ sender: Any) {
@@ -93,11 +115,12 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
         
-    return swipeActions
+        if (master == true) { return swipeActions }
+        else { return nil }
     }
     
-    // MARK: - Data
 }
+    // MARK: - Data
 
 extension MainViewController {
     func fetchData(completion: (_ complete: Bool) -> ()) {
@@ -120,10 +143,8 @@ extension MainViewController {
         do {
             try managedContext.save()
             //print("Data Deleted")
-            
         } catch {
             //print("Failed to delete data: ", error.localizedDescription)
-            
         }
     }
     

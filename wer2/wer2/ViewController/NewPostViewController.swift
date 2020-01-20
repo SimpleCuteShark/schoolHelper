@@ -14,7 +14,7 @@ class NewPostViewController: UIViewController {
     @IBOutlet weak var PostText: UITextView!
     @IBOutlet weak var PostName: UITextField!
     
-    //var taskArray = [Post]()
+    let taskArray = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,35 +23,34 @@ class NewPostViewController: UIViewController {
     }
     
     // MARK: - Button
+    
     @IBAction func SaveButPress(_ sender: Any) {
-        saveTask { (done) in
-            if done {
-                //print("We need to return now")
-                navigationController?.popViewController(animated: true)
-                self.dismiss(animated: true, completion: nil)
-            } else {
-                //print("Try again")
-            }
-        }
-
+        saveTask()
     }
+    
     // MARK: - Data
 
-    func saveTask(completion: (_ finished: Bool) -> ()) {
-        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
-        let task = Post(context: managedContext)
-        task.text = PostText.text
-        task.name = PostName.text
-        //task.index = Double(taskArray.count + 1)
-        
-        do {
-            try managedContext.save()
-            //print("Data Saved")
-            completion(true)
-        } catch {
-            //print("Failed to save data: ", error.localizedDescription)
-            completion(false)
+    func saveTask() {
+            db.collection("Post").getDocuments{ (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let NAME = self.PostName.text ?? ""
+                let TEXT = self.PostText.text ?? ""
+                for document in querySnapshot!.documents {
+                    if document.get("name") as? String != NAME {
+                        db.collection("Post").document(NAME).setData(["name": NAME, "tags": "not work", "text": TEXT])
+                        self.closeWindow()
+                    }
+                }
+            }
         }
     }
-
+    
+    // MARK: - Novigation
+    
+    func closeWindow() {
+       navigationController?.popViewController(animated: true)
+       self.dismiss(animated: true, completion: nil)
+    }
 }

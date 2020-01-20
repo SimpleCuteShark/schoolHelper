@@ -1,23 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
-    <entity name="NowUs" representedClassName="NowUs" syncable="YES" codeGenerationType="class">
-        <attribute name="email" optional="YES" attributeType="String"/>
-        <attribute name="master" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-    </entity>
     <entity name="Post" representedClassName="Post" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="tags" optional="YES" attributeType="String"/>
         <attribute name="text" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="TableTime" representedClassName="TableTime" syncable="YES" codeGenerationType="class">
-        <attribute name="clas" optional="YES" attributeType="String"/>
-        <attribute name="dayOfWeek" optional="YES" attributeType="String"/>
-        <attribute name="lesson" optional="YES" attributeType="String"/>
-        <attribute name="numberLesson" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-    </entity>
     <elements>
-        <element name="NowUs" positionX="-54" positionY="27" width="128" height="88"/>
-        <element name="Post" positionX="-63" positionY="-18" width="128" height="73"/>
-        <element name="TableTime" positionX="-63" positionY="0" width="128" height="103"/>
+        <element name="Post" positionX="-63" positionY="-18" width="128" height="103"/>
     </elements>
 </model>

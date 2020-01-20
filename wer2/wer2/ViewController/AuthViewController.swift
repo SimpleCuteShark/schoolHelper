@@ -18,7 +18,7 @@ class AuthViewController: UIViewController {
     @IBOutlet weak var Label2: UILabel!
     @IBOutlet weak var Button: UIButton!
     
-    var nowUs = [NowUs]()
+    // смена регистрации/входа
     var singup :Bool = true{
         willSet{
             if newValue {
@@ -49,33 +49,6 @@ class AuthViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
-    /*
-    func saveTask() {
-        let name = Name.text!
-        //let Pass = pass.text!
-        let Email = email.text!
-        guard let managedContext = appDelegate2?.persistentContainer.viewContext else { return }
-        let us = NowUs(context: managedContext)
-        if (singup) {
-            us.name = name
-            us.email = Email
-
-            us.master = false
-        } else {
-            us.name = name
-            us.email = Email
-            
-            us.master = false
-        }
-        print(nowUs)
-        do {
-            try managedContext.save()
-            print("роботает")
-        } catch {
-            print("сломалося")
-        }
-    }
- */
 }
 // MARK: - Auth
 
@@ -86,6 +59,7 @@ extension AuthViewController: UITextFieldDelegate{
         let Email = email.text!
         
         if (singup) {
+            // Регистрация
             if (!name.isEmpty && !Pass.isEmpty && !Email.isEmpty) {
                 Auth.auth().createUser(withEmail: Email, password: Pass) { (result, error) in
                     if error == nil {
@@ -112,6 +86,7 @@ extension AuthViewController: UITextFieldDelegate{
             } else {
                 Alert()
             }
+            // вход
         } else {
             if (!Pass.isEmpty && !Email.isEmpty) {
                 Auth.auth().signIn(withEmail: Email, password: Pass) { (result, error) in

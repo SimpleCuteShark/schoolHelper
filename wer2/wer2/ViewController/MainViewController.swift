@@ -19,18 +19,18 @@ class MainViewController: UIViewController {
     @IBOutlet weak var newPostButton: UIBarButtonItem!
     
     var master = false;
-    var taskArray = [Post]()
+    var taskArray = PostModel.fetchPost()
+    var timer: Timer?
     let cellid = "cellid"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        callDelegates()
         
+        callDelegates()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
-        fetchyData()
-        tv.reloadData()
+        createTimer()
         
         let user = Auth.auth().currentUser
         if let user = user {
@@ -40,7 +40,7 @@ class MainViewController: UIViewController {
         if let document = document, document.exists {
             self.master = document.get("Master") as? Bool ?? false
         } else {
-            
+            self.master = false
         } } }
         
         if master == true {
@@ -52,6 +52,10 @@ class MainViewController: UIViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        cancelTimer()
+    }
+    
     @IBAction func NewPostButton(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tvc = storyboard.instantiateViewController(withIdentifier: "NewPostControllerSID")
@@ -60,15 +64,13 @@ class MainViewController: UIViewController {
     }
     
     func fetchyData(){
-         fetchData { (done) in
-             if done {
-                 if taskArray.count > 0 {
-                     tv.isHidden = false
-                 } else {
-                     tv.isHidden = true
-                 }
-             }
-         }
+        if taskArray.count > 0 {
+            tv.isHidden = false
+            //print("www")
+        } else {
+            tv.isHidden = true
+            //print("xxx")
+        }
     }
     
     func callDelegates(){
@@ -81,6 +83,7 @@ class MainViewController: UIViewController {
     // MARK: - TableView
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //print(taskArray.count)
         return taskArray.count
     }
     
@@ -89,7 +92,8 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         let task = taskArray[indexPath.row]
         cell.Label.text = task.text
         cell.Name.text = task.name
-        
+        //print(cell.Label.text ?? "not work")
+        //print(cell.Name.text ?? "not work")
         return cell
         
     }
@@ -109,9 +113,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     let contextItem = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
-        self.deleteData(indexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.cellid, for: indexPath) as! TableViewCell
+        self.deleteData(name: cell.Name.text ?? "")
         self.fetchyData()
-        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
         
@@ -123,29 +127,47 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     // MARK: - Data
 
 extension MainViewController {
-    func fetchData(completion: (_ complete: Bool) -> ()) {
-        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
-        do {
-            taskArray = try  managedContext.fetch(request) as! [Post]
-            //print("Data fetched, no issues")
-            completion(true)
-        } catch {
-            //print("Unable to fetch data: ", error.localizedDescription)
-            completion(false)
-        }
-        
+    
+    func deleteData(name: String) {
+        db.collection("Post").document(name).delete()
     }
     
-    func deleteData(indexPath: IndexPath) {
-         guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
-        managedContext.delete(taskArray[indexPath.row])
-        do {
-            try managedContext.save()
-            //print("Data Deleted")
-        } catch {
-            //print("Failed to delete data: ", error.localizedDescription)
+    func update() {
+        db.collection("Post").getDocuments{ (querySnapshot, err) in
+            if err != nil {
+            //print("Error getting documents: \(err)")
+        } else {
+                self.taskArray.removeAll()
+            for document in querySnapshot!.documents {
+                self.taskArray.append(PostModel(name: (document.get("name")) as! String, tags: (document.get("tags")) as! String, text: (document.get("text")) as! String))
+            }
+            //print(self.taskArray)
         }
     }
-    
+    }
 }
+
+// MARK: - Timer
+
+extension MainViewController {
+    @objc func updateTimer(){
+        update()
+        fetchyData()
+        tv.reloadData()
+    }
+    func createTimer(){
+        if timer == nil{
+            timer = Timer.scheduledTimer(timeInterval: 0.5,
+                                        target: self,
+                                        selector: #selector(updateTimer),
+                                        userInfo: nil,
+                                        repeats: true)
+        }
+        timer?.tolerance = 0.2
+    }
+    func cancelTimer() {
+      timer?.invalidate()
+      timer = nil
+    }
+}
+

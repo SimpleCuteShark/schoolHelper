@@ -21,6 +21,8 @@ class TimeTableViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
+        
+        //print(TimeTable)
     }
 
     // MARK: - TableView

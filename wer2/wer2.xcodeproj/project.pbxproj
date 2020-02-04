@@ -19,6 +19,8 @@
 		FA99ED8D234DCFC40023A780 /* wer2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA99ED8B234DCFC40023A780 /* wer2.xcdatamodeld */; };
 		FA99ED8F234DCFC50023A780 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA99ED8E234DCFC50023A780 /* Assets.xcassets */; };
 		FA99ED92234DCFC50023A780 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA99ED90234DCFC50023A780 /* LaunchScreen.storyboard */; };
+		FAAD406D23E040EF00A85B4C /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD406C23E040EF00A85B4C /* TableViewController.swift */; };
+		FAAF138423D613A5005B0466 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAF138323D613A5005B0466 /* PostViewController.swift */; };
 		FAC0B73223507ED8009B5808 /* TimeTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC0B73123507ED8009B5808 /* TimeTableModel.swift */; };
 		FADFE55B2372CEA700E59105 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADFE55A2372CEA700E59105 /* NewPostViewController.swift */; };
 		FADFE55F2372D49700E59105 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADFE55E2372D49700E59105 /* MainViewController.swift */; };
@@ -42,6 +44,8 @@
 		FA99ED8E234DCFC50023A780 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA99ED91234DCFC50023A780 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA99ED93234DCFC50023A780 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAAD406C23E040EF00A85B4C /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		FAAF138323D613A5005B0466 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		FAC0B73123507ED8009B5808 /* TimeTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableModel.swift; sourceTree = "<group>"; };
 		FADFE55A2372CEA700E59105 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		FADFE55E2372D49700E59105 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +89,8 @@
 				FADFE55E2372D49700E59105 /* MainViewController.swift */,
 				FA58162623797F140033619A /* ProfileViewController.swift */,
 				FA5816282379880C0033619A /* AuthViewController.swift */,
+				FAAF138323D613A5005B0466 /* PostViewController.swift */,
+				FAAD406C23E040EF00A85B4C /* TableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -258,7 +264,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAAF138423D613A5005B0466 /* PostViewController.swift in Sources */,
 				FA4D7C2C2360E29D0067BD13 /* TimeTableViewController.swift in Sources */,
+				FAAD406D23E040EF00A85B4C /* TableViewController.swift in Sources */,
 				FA99ED8D234DCFC40023A780 /* wer2.xcdatamodeld in Sources */,
 				FA5816292379880C0033619A /* AuthViewController.swift in Sources */,
 				FAC0B73223507ED8009B5808 /* TimeTableModel.swift in Sources */,

@@ -10,11 +10,15 @@ import Foundation
 import UIKit
 
 struct TimeTableModel {
-    var mainImage: UIImage;
-    var className: String;
+    //var mainImage: UIImage;
+    //var className: String;
     //var TimeImage: UIImage;
     
+    var Class: String
+    //var DayOfWeek: String
+    
     static func fetchTimeTable() -> [TimeTableModel] {
+        /*
         
         let A11 = TimeTableModel(mainImage: UIImage(named: "Class")!, className: "11 A ТЕХ")
         let B11 = TimeTableModel(mainImage: UIImage(named: "Class")!, className: "11 Б ТЕХ")
@@ -53,7 +57,7 @@ struct TimeTableModel {
         
         return [A11, B11, V11, G11, A10, B10, V10, G10, A9, B9, V9, G9, A8, B8, V8, G8, A7, B7, V7, G7, A6, B6, V6, G6, A5, B5, V5,     G5]
         
-        /*
+        
         let i11 = TimeTableModel(mainImage: UIImage(named: "Class")!, className: "11 Классы", TimeImage: UIImage(named: "Far1")!)
         let i10 = TimeTableModel(mainImage: UIImage(named: "Class")!, className: "10 Классы", TimeImage: UIImage(named: "Far1")!)
         let i9 = TimeTableModel(mainImage: UIImage(named: "Class")!, className: "9 Классы", TimeImage: UIImage(named: "Far1")!)
@@ -64,5 +68,7 @@ struct TimeTableModel {
         
         return [i11, i10, i9, i8, i7, i6, i5]
          */
+        let result = [TimeTableModel]()
+        return result
     }
 }

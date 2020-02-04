@@ -38,7 +38,7 @@ class NewPostViewController: UIViewController {
                 let NAME = self.PostName.text ?? ""
                 let TEXT = self.PostText.text ?? ""
                 for document in querySnapshot!.documents {
-                    if document.get("name") as? String != NAME {
+                    if (document.get("name") as? String ?? "") != NAME {
                         db.collection("Post").document(NAME).setData(["name": NAME, "tags": "not work", "text": TEXT])
                         self.closeWindow()
                     }

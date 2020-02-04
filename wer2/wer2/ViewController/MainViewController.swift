@@ -17,7 +17,7 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var tv: UITableView!
     @IBOutlet weak var newPostButton: UIBarButtonItem!
-    
+
     var master = false;
     var taskArray = PostModel.fetchPost()
     var timer: Timer?
@@ -41,7 +41,9 @@ class MainViewController: UIViewController {
             self.master = document.get("Master") as? Bool ?? false
         } else {
             self.master = false
-        } } }
+            } } } else {
+            master = false
+        }
         
         if master == true {
             newPostButton.isEnabled = true
@@ -58,9 +60,9 @@ class MainViewController: UIViewController {
     
     @IBAction func NewPostButton(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let tvc = storyboard.instantiateViewController(withIdentifier: "NewPostControllerSID")
+        let npvc = storyboard.instantiateViewController(withIdentifier: "NewPostControllerSID")
         
-        show(tvc, sender: nil)
+        show(npvc, sender: nil)
     }
     
     func fetchyData(){
@@ -95,8 +97,8 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         //print(cell.Label.text ?? "not work")
         //print(cell.Name.text ?? "not work")
         return cell
-        
     }
+    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -106,11 +108,25 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 200
     }
+    
     func tableView(_ tableView: UITableView, weightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let currentPost = taskArray[indexPath.row]
+        //let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let pvc = self.storyboard?.instantiateViewController(withIdentifier: "PostViewControllerSID") as! PostViewController
+        
+        pvc.currentPost = currentPost.text
+        pvc.Master = master
+        
+        show(pvc, sender: nil)
+    }
+    /*
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     let contextItem = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
         let cell = tableView.dequeueReusableCell(withIdentifier: self.cellid, for: indexPath) as! TableViewCell
@@ -122,15 +138,16 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         if (master == true) { return swipeActions }
         else { return nil }
     }
+ */
     
 }
     // MARK: - Data
 
 extension MainViewController {
     
-    func deleteData(name: String) {
-        db.collection("Post").document(name).delete()
-    }
+    //func deleteData(name: String) {
+    //    db.collection("Post").document(name).delete()
+    //}
     
     func update() {
         db.collection("Post").getDocuments{ (querySnapshot, err) in
@@ -144,6 +161,13 @@ extension MainViewController {
             //print(self.taskArray)
         }
     }
+        if master == true {
+            newPostButton.isEnabled = true
+            newPostButton.tintColor = UIColor.systemBlue
+        } else {
+            newPostButton.isEnabled = false
+            newPostButton.tintColor = UIColor.clear
+        }
     }
 }
 
